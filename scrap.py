@@ -37,7 +37,7 @@ def send_whatsapp_notification(message):
 
     try:
         client = Client(account_sid, auth_token)
-        client.messages.create(to=whatsapp_to, from_=whatsapp_from, body=message)
+        client.messages.create(to=whatsapp_to, from_=whatsapp_from, content_sid="HXfe5ab5f00277942d4d4200328b4d403c")
         print("WhatsApp message sent.")
     except Exception as exc:
         print(f"WhatsApp notification failed: {exc}")
