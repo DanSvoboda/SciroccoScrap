@@ -24,6 +24,16 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Debug env & deps
+        shell: bash
+        run: |
+          python - <<'PY'
+          import importlib, os
+          print('twilio import:', 'OK' if importlib.util.find_spec('twilio') else 'MISSING')
+          for k in ['TWILIO_ACCOUNT_SID','TWILIO_AUTH_TOKEN','TWILIO_WHATSAPP_FROM','WHATSAPP_TO','SMTP_USERNAME']:
+              print(k, 'set' if os.getenv(k) else 'NOT SET')
+          PY
+
       - name: Run scraper
         env:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
