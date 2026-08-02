@@ -28,7 +28,7 @@ jobs:
         shell: bash
         run: |
           python - <<'PY'
-          import importlib, os
+          import importlib.util, os
           print('twilio import:', 'OK' if importlib.util.find_spec('twilio') else 'MISSING')
           for k in ['TWILIO_ACCOUNT_SID','TWILIO_AUTH_TOKEN','TWILIO_WHATSAPP_FROM','WHATSAPP_TO','SMTP_USERNAME']:
               print(k, 'set' if os.getenv(k) else 'NOT SET')
